@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ConnectionIssuesManager"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "RPNetworking based delegate to manage no connection and maintenance error once"
 
   s.description  = <<-DESC
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/rapinto/ConnectionIssuesManager.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/rapinto/ConnectionIssuesManager.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

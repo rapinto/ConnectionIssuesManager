@@ -37,17 +37,22 @@
 
 
 
+@protocol ConnectionIssueManagerDelegate <NSObject>
+
+
+- (void)serveurConnectionLost;
+- (void)serveurMaintenance;
+
+
+@end
+
+
+
 @interface ConnectionIssuesManager : NSObject <RPOperationManagerDelegate>
 
 
 
-+ (BOOL)HasNoConnectionAlertViewBeenDisplayed;
-+ (void)setNoConnectionAlertViewDisplayed;
-+ (BOOL)needToDisplayNoConnectionAlertView;
-
-+ (BOOL)HasMaintenanceAlertViewBeenDisplayed;
-+ (void)setMaintenanceAlertViewDisplayed;
-+ (BOOL)needToDisplayMaintenanceAlertView;
+@property (weak, nonatomic) NSObject<ConnectionIssueManagerDelegate>* delegate;
 
 
 

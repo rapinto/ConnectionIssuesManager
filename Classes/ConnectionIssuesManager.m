@@ -36,6 +36,10 @@
 
 
 
+@synthesize delegate;
+
+
+
 #pragma mark -
 #pragma mark Singleton Methods
 
@@ -122,7 +126,7 @@ static ConnectionIssuesManager* sharedInstance = nil;
 }
 
 
-+ (BOOL)needToDisplayNoConnectionAlertView
++ (BOOL)needToNotifyForNoConnection
 {
     if ([ConnectionIssuesManager HasNoConnectionAlertViewBeenDisplayed])
     {
@@ -148,7 +152,7 @@ static ConnectionIssuesManager* sharedInstance = nil;
 }
 
 
-+ (BOOL)needToDisplayMaintenanceAlertView
++ (BOOL)needToNotifyForMaintenance
 {
     if ([ConnectionIssuesManager HasMaintenanceAlertViewBeenDisplayed])
     {
@@ -178,7 +182,42 @@ static ConnectionIssuesManager* sharedInstance = nil;
 - (void)operationManager:(RPOperationManager*)operationManager
         didFailOperation:(RPRequestOperation*)operation
                withError:(NSError*)error
-{
+{long statusCode = operation.response.statusCode;
+    
+    if (statusCode == 0)
+    {
+        statusCode = error.code;
+    }
+    
+    switch (statusCode)
+    {
+            // Timeout fire by server
+        case NSURLErrorTimedOut:
+        case NSURLErrorNotConnectedToInternet:
+        case NSURLErrorNetworkConnectionLost:
+        case NSURLErrorCannotFindHost:
+        {
+            if ([ConnectionIssuesManager needToNotifyForNoConnection])
+            {
+                [delegate serveurConnectionLost];
+            }
+            
+            break;
+        }
+        case 503:
+        {
+            if ([ConnectionIssuesManager needToNotifyForMaintenance])
+            {
+                [delegate serveurMaintenance];
+            }
+            
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
 }
 
 
