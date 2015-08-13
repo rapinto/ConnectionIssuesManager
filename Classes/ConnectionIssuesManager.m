@@ -182,7 +182,8 @@ static ConnectionIssuesManager* sharedInstance = nil;
 - (void)operationManager:(RPOperationManager*)operationManager
         didFailOperation:(RPRequestOperation*)operation
                withError:(NSError*)error
-{long statusCode = operation.response.statusCode;
+{
+    long statusCode = operation.response.statusCode;
     
     if (statusCode == 0)
     {

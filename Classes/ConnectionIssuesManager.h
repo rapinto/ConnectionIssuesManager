@@ -56,4 +56,8 @@
 
 
 
++ (ConnectionIssuesManager*)sharedInstance;
+
+
+
 @end
