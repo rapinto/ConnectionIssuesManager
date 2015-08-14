@@ -68,7 +68,7 @@ static ConnectionIssuesManager* sharedInstance = nil;
 
 - (id)init
 {
-    self = [self init];
+    self = [super init];
     
     if (self)
     {
