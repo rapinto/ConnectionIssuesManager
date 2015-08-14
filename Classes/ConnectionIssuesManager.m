@@ -179,9 +179,9 @@ static ConnectionIssuesManager* sharedInstance = nil;
 }
 
 
-- (void)operationManager:(RPOperationManager*)operationManager
-        didFailOperation:(RPRequestOperation*)operation
-               withError:(NSError*)error
+- (BOOL)isHandledOperationManager:(RPOperationManager*)operationManager
+                 didFailOperation:(RPRequestOperation*)operation
+                        withError:(NSError*)error
 {
     long statusCode = operation.response.statusCode;
     
@@ -201,6 +201,8 @@ static ConnectionIssuesManager* sharedInstance = nil;
             if ([ConnectionIssuesManager needToNotifyForNoConnection])
             {
                 [delegate serveurConnectionLost];
+                
+                return YES;
             }
             
             break;
@@ -210,6 +212,8 @@ static ConnectionIssuesManager* sharedInstance = nil;
             if ([ConnectionIssuesManager needToNotifyForMaintenance])
             {
                 [delegate serveurMaintenance];
+                
+                return YES;
             }
             
             break;
@@ -219,6 +223,8 @@ static ConnectionIssuesManager* sharedInstance = nil;
             break;
         }
     }
+    
+    return NO;
 }
 
 
