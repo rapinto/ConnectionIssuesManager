@@ -28,7 +28,6 @@
 
 
 #import "ConnectionIssuesManager.h"
-#import "RPRequestOperation.h"
 
 
 
@@ -171,19 +170,22 @@ static ConnectionIssuesManager* sharedInstance = nil;
 
 
 
-- (void)operationManager:(RPOperationManager*)operationManager
-     didSucceedOperation:(RPRequestOperation*)operation
-      withResponseObject:(id)responseObject
+- (void)requestDidSucceed:(NSURLRequest*)request
+             httpResponse:(NSHTTPURLResponse*)response
+           responseObject:(id)responseObject
+         requestTotalTime:(CFAbsoluteTime)totalTime
 {
     [self resetErrorTS];
 }
 
 
-- (BOOL)isHandledOperationManager:(RPOperationManager*)operationManager
-                 didFailOperation:(RPRequestOperation*)operation
-                        withError:(NSError*)error
+- (BOOL)isHandledReequestDidFail:(NSURLRequest*)request
+                    httpResponse:(NSHTTPURLResponse*)response
+                  responseObject:(id)responseObject
+                           error:(NSError*)error
+                requestTotalTime:(CFAbsoluteTime)totalTime
 {
-    long statusCode = operation.response.statusCode;
+    long statusCode = response.statusCode;
     
     if (statusCode == 0)
     {

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ConnectionIssuesManager"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "RPNetworking based delegate to manage no connection and maintenance error once"
 
   s.description  = <<-DESC

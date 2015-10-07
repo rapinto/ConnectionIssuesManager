@@ -48,7 +48,7 @@
 
 
 
-@interface ConnectionIssuesManager : NSObject <RPOperationManagerDelegate>
+@interface ConnectionIssuesManager : NSObject <RPHTTPManagerDelegate>
 
 
 
