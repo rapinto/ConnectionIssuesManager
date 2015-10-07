@@ -33,7 +33,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import "RPOperationManagerDelegate.h"
+#import "RPHTTPManagerDelegate.h"
 
 
 
