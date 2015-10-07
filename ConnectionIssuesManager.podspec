@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ConnectionIssuesManager"
-  s.version      = "1.0.5"
+  s.version      = "1.0.6"
   s.summary      = "RPNetworking based delegate to manage no connection and maintenance error once"
 
   s.description  = <<-DESC
@@ -132,6 +132,6 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.dependency "RPNetworking", "~> 1.0.3"
+  s.dependency "RPNetworking", "~> 2.0.23"
 
 end
